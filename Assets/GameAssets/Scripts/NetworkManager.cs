@@ -30,6 +30,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     #region Unity Methods
 
 
+    private void Awake()
+    {
+        PhotonNetwork.AutomaticallySyncScene = true;
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +79,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log(PhotonNetwork.NickName +  " joined to " + PhotonNetwork.CurrentRoom.Name);
+        PhotonNetwork.LoadLevel("Game");
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)

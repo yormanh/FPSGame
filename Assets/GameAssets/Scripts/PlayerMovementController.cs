@@ -7,12 +7,14 @@ public class PlayerMovementController : MonoBehaviour
 {
     Animator _animator;
     RigidbodyFirstPersonController _rigidbodyFirstPersonController;
+    Shooting _shootingScript;
 
     // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponent<Animator>();
         _rigidbodyFirstPersonController = GetComponent<RigidbodyFirstPersonController>();
+        _shootingScript = GetComponent<Shooting>();
     }
 
     // Update is called once per frame
@@ -34,6 +36,12 @@ public class PlayerMovementController : MonoBehaviour
         }
         else
             _animator.SetBool("IsRunning", false);
+
+        if (_rigidbodyFirstPersonController.GetButtonDown("Fire1"))
+        {
+            _shootingScript.Fire();
+        }
+
 
     }
 }

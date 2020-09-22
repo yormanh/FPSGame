@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityStandardAssets.Characters.FirstPerson;
+using TMPro;
 
 public class PlayerSetup : MonoBehaviourPunCallbacks
 {
@@ -11,6 +12,10 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
 
     [SerializeField] Camera _cameraPlayer;
     [SerializeField] Animator _animator;
+
+    [SerializeField] GameObject _playerUIPrefab;
+
+    [SerializeField] TextMeshProUGUI _playerNameText;
 
 
     // Start is called before the first frame update
@@ -26,6 +31,8 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             _cameraPlayer.enabled = true;
             GetComponent<RigidbodyFirstPersonController>().enabled = true;
             _animator.SetBool("IsSoldier", false);
+            GetComponent<PlayerMovementController>().enabled = true;
+            GameObject playerUIgameObject = Instantiate(_playerUIPrefab);
 
         }
         else
@@ -38,7 +45,11 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             _cameraPlayer.enabled = false;
             GetComponent<RigidbodyFirstPersonController>().enabled = false;
             _animator.SetBool("IsSoldier", true);
+            GetComponent<PlayerMovementController>().enabled = false;
         }
+
+        _playerNameText.text = photonView.Owner.NickName;
+
     }
 
     // Update is called once per frame

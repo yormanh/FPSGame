@@ -221,6 +221,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             return input;
         }
 
+        public bool GetButtonDown(string name)
+        {
+            return CrossPlatformInputManager.GetButtonDown(name);
+        }
+
 
         private void RotateView()
         {

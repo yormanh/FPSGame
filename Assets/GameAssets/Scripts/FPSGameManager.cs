@@ -16,7 +16,10 @@ public class FPSGameManager : MonoBehaviour
 
             if (_playerPrefab != null)
             {
-                PhotonNetwork.Instantiate(_playerPrefab.name, Vector3.zero, Quaternion.identity);
+                int randomPointZ = Random.Range(-10, 0);
+                int randomPointX = Random.Range(-5, 0);
+
+                PhotonNetwork.Instantiate(_playerPrefab.name, new Vector3(randomPointX, 0, randomPointZ), Quaternion.identity);
             }
             else
             {

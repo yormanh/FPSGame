@@ -98,6 +98,7 @@ public class Shooting : MonoBehaviourPunCallbacks
             respawnTime -= 1.0f;
 
             transform.GetComponent<PlayerMovementController>().enabled = false;
+            
             reSpawnText.GetComponent<TextMeshProUGUI>().text = "Yor are Killed. Respawing at: " + respawnTime.ToString(".00");
 
         }
@@ -108,6 +109,7 @@ public class Shooting : MonoBehaviourPunCallbacks
         int randomPoint = Random.Range(-20, 20);
         transform.position = new Vector3(randomPoint, 0, randomPoint);
         transform.GetComponent<PlayerMovementController>().enabled = true;
+
 
         photonView.RPC("RagainHealth", RpcTarget.AllBuffered);
     }
